@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import model.domain.Cliente;
 
@@ -28,5 +29,11 @@ public class ClienteDaoImpl implements ClienteDao {
 		return query.getResultList();
 	}
 	
+	@Override
+	@Transactional
+	public void excluir(Cliente cliente) {
+		cliente  = entityManager.merge(cliente);
+		entityManager.remove(cliente);
+	}
 
 }

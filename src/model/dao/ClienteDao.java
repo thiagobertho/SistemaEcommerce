@@ -8,4 +8,6 @@ public interface ClienteDao {
 
 	List<Cliente> getClientes(Cliente cliente);
 
+	void excluir(Cliente cliente);
+
 }

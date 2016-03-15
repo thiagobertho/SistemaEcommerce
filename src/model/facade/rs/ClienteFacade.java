@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -52,18 +53,15 @@ public class ClienteFacade {
 		throw new WebApplicationException(404);
 	}*/
 	
-	/*@DELETE
+	@DELETE
 	@Path("/{codigo}")
-	public Cliente deletarCliente(@PathParam("codigo") Integer codigo) {
-		try {
-			Cliente cliente = getCliente(codigo);
-			clientes.remove(cliente);
-			return cliente;
-		} catch(ClienteNaoEncontradoException e) {
-			throw new WebApplicationException(404);
-		}		
+	public void deletarCliente(@PathParam("codigo") Integer codigo) {
+		Cliente cliente = new Cliente();
+		cliente.setCodigo(codigo);
+		clienteDao.excluir(cliente);
 	}
-
+	
+/*
 	private Cliente getCliente(Integer codigo) throws ClienteNaoEncontradoException{
 		for (Cliente cliente: clientes) {
 			if (cliente.getCodigo().equals(codigo)) {
